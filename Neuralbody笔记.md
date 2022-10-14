@@ -1,4 +1,4 @@
-#【NeuralBody踩坑指南】
+# NeuralBody踩坑指南
 1. 在添加了 PATH=/usr/local/cuda-10.2/bin/:$PATH  后，出现 static library kineto_LIBRARY-NOTFOUND not found.  
 于是通过 https://github.com/pytorch/pytorch/issues/62588 尝试解决.kineto已经添加到环境下的site-packages里，但仍然无效  
 2. 偶然发现可能是spconv的问题，
