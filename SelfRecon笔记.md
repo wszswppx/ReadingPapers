@@ -1,7 +1,7 @@
 # SelfRecon踩坑笔记
 菜鸟试图复现开源项目SelfRecon，这是他内心的变化……
 ## 安装环境
-**1. CUDA和cuDNN版本**  
+### **1. CUDA和cuDNN版本**  
 
 在执行 ` bash install.sh `时报错：
 ```
@@ -67,4 +67,16 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUDA_HOME/lib64"
 至此CUDA配置完成。  
 重新开一个终端再次执行 `bash install.sh` 蹦出来一大堆warning，还有蓝有紫的，不知道算不算问题。
 
-**2. **  
+### **2. [Extract-normals部分](https://github.com/jby1993/SelfReconCode#extract-normals)**  
+根本不知道要干嘛……好不容易做到这一步了，你跟我说你需要预先安装好[PIFuHD](https://github.com/facebookresearch/pifuhd) 和 [Lightweight Openpose](https://github.com/Daniil-Osokin/lightweight-human-pose-estimation.pytorch)……真的很无语  
+
+把对应的项目git下来，然后把指定的文件放进去，执行
+```
+cd $ROOT2
+python generate_boxs.py --data $ROOT/female-3-casual/imgs
+cd $ROOT1
+python generate_normals.py --imgpath $ROOT/female-3-casual/imgs
+# 注意：这里的$ROOT需要改成自己目录，建议写成绝对路径，虽然很麻烦但比较安全省事
+```
+时出现各种问题，难道还要我先把前面两个project跑通？？我不能接受  
+**2022年10月14日22:46:00** 今天就先到这里吧
