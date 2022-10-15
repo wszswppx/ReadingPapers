@@ -8,7 +8,7 @@
 ```
 **解决方法**：不要用cmd，用powershell即可。
 
-## 2. 读取文件时  
+## 2. 在程序试图读取pkl文件时  
 报错：
 ```
 pickle.UnpicklingError: the STRING opcode argument must be quoted
@@ -18,6 +18,7 @@ pickle.UnpicklingError: the STRING opcode argument must be quoted
 | :---        |    :----:   |        :---:  |
 | 文件系统     | DOS         | UNIX          |
 | 换行符       | \r\n        | \n            |
+
 **解决方法**：在linux系统中有命令`dos2unix`和`unix2dos`来实现两种文件的转换，而Windows中可以[通过在BASTET.COM下载同款](http://www.bastet.com/)来实现。  
 **结果**：在转换前后文件的大小没变、修改日期也没变，看起来没有任何变化。且bug继续存在。  
 
