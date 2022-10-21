@@ -94,7 +94,13 @@ python generate_normals.py --imgpath $ROOT/female-3-casual/imgs
   ```
    UserWarning: CUDA initialization: CUDA driver initialization failed, you might not have a CUDA gpu. (Triggered internally at  /opt/conda/conda-bld/pytorch_1640811806235/work/c10/cuda/CUDAFunctions.cpp:112.)
   ```
-  查了一下发现是显卡驱动的问题。但是试了几次把cuda配置从.bashrc里删掉又加上并重启新终端，都没有用，把CUDA11.3那一套删掉了也不行。  
+  查了一下发现是显卡驱动的问题。  
+  跳过这一步去执行SelfRecon里的  
+  ```
+  cd $ROOT2
+  python generate_boxs.py --data $ROOT/female-3-casual/imgs
+  ```
+  也出现同样的Warning，但是试了几次把cuda配置从.bashrc里删掉又加上并重启新终端，都没有用，把CUDA11.3那一套删掉了也不行。  
   但是如果真删掉cuda11.3，就算当前这个解决了，到了SelfRecon那里也还是不行啊。
   怀疑的问题：  
   ①显卡驱动不支持CUDA11.3  
@@ -105,4 +111,19 @@ python generate_normals.py --imgpath $ROOT/female-3-casual/imgs
   显然，作为一个学生是没有权限改变驱动版本的。所以还是**另想它法**吧。  
   
   **至此，在所里服务器上运行SelfRecon的计划几乎彻底破灭了。**
-  3. Lightweight
+  
+  2. Lightweight  
+  要求下载[COCO 2017数据集（train, val, annotations）](http://cocodataset.org/#download)于是执行命令  
+  ```
+  cd Lightweight
+  wget http://images.cocodataset.org/annotations/annotations_trainval2017.zip
+  unzip annotations_trainval2017.zip
+  ```
+  得到`annotations`文件夹。  
+  然后下载预训练模型：
+  ```
+  wget https://download.01.org/opencv/openvino_training_extensions/models/human_pose_estimation/checkpoint_iter_370000.pth
+  ```
+  由于驱动问题，这里再继续已经没有意义了，我先去研究学院集群的环境和用法看看。  
+  
+  
