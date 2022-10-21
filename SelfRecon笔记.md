@@ -80,3 +80,29 @@ python generate_normals.py --imgpath $ROOT/female-3-casual/imgs
 ```
 时出现各种问题，难道还要我先把前面两个project跑通？？我不能接受  
 **2022年10月14日22:46:00** 今天就先到这里吧
+
+### **3. 安装PIFUHD和Lightweight**  
+于是把 [PIFuHD](https://github.com/facebookresearch/pifuhd) 和 [Lightweight Openpose](https://github.com/Daniil-Osokin/lightweight-human-pose-estimation.pytorch)都作为另外两个项目clone下来，虚拟环境还是用的SelfRecon的。  
+  1. PIFuHD  
+  按照要求依次执行
+  ```
+  pip install -r requirements.txt 
+  sh ./scripts/download_trained_model.sh
+  sh ./scripts/demo.sh
+  ```
+  在执行第三句的时候无法正常生成.obj文件，只生成了一个png，提示：
+  ```
+   UserWarning: CUDA initialization: CUDA driver initialization failed, you might not have a CUDA gpu. (Triggered internally at  /opt/conda/conda-bld/pytorch_1640811806235/work/c10/cuda/CUDAFunctions.cpp:112.)
+  ```
+  查了一下发现是显卡驱动的问题。但是试了几次把cuda配置从.bashrc里删掉又加上并重启新终端，都没有用，把CUDA11.3那一套删掉了也不行。  
+  但是如果真删掉cuda11.3，就算当前这个解决了，到了SelfRecon那里也还是不行啊。
+  怀疑的问题：  
+  ①显卡驱动不支持CUDA11.3  
+  ②我的CUDA装的有问题  
+  稍作思考以后我认为是①的原因，去查了一下，发现果不其然。NVIDIA官网有[CUDA Toolkit和Driver Version的版本对应表](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#title-resolved-issues)：  
+  ![image](https://user-images.githubusercontent.com/32038518/197183887-e3c399be-3c69-46eb-ac14-f4e11265b953.png)  
+  但是服务器的驱动版本是440.33.01搭配cuda10.2；而想要获得cuda11.3版本就必须要求显卡驱动在>=465.19.01。  
+  显然，作为一个学生是没有权限改变驱动版本的。所以还是**另想它法**吧。  
+  
+  **至此，在所里服务器上运行SelfRecon的计划几乎彻底破灭了。**
+  3. Lightweight
