@@ -1,4 +1,5 @@
-### 这里是在复现VideoAvatar的时候出现的bug记录
+# VideoAvatar踩坑笔记
+菜鸟复现VideoAvatar，这虽然是一个base project，但年久失修，其中存在太多问题……
 
 ## 代码文件逻辑
 代码分为三个步骤：
@@ -8,14 +9,14 @@
 3. step3_texture.py: texture calculation
 ```
 总结为以下三步：  
-1. `run_step1.sh` : 
+1. `run_step1.sh` :   
 keypoints.hdf5 + masks.hdf5 + camera.pkl => reconstructed_poses.hdf5  
 这一步运行很慢，要七八个小时，记得使用tmux
 
-2. `run_step2.sh` : 
+2. `run_step2.sh` :   
 reconstructed_poses.hdf5 + masks.hdf5 + camera.pkl => consensus.pkl + consensus.obj
 
-3. `run_step3.sh` : 
+3. `run_step3.sh` :   
 consensus.pkl + camera.pkl + .mp4 + reconstructed_poses.hdf5 + masks.hdf5 => texture.jpg
 
 故需运行videoavatar需要的前置文件：  
