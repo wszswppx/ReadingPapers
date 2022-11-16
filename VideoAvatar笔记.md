@@ -1,5 +1,5 @@
 # VideoAvatar踩坑笔记
-菜鸟复现VideoAvatar，这虽然是一个base project，但年久失修，其中存在太多问题……
+菜鸟复现[VideoAvatar](https://github.com/thmoa/videoavatars)，这虽然是一个base project，但年久失修，其中存在太多问题……
 
 ## 代码文件逻辑
 代码分为三个步骤：
