@@ -51,4 +51,5 @@ pip install setuptools==59.6.0
 ```
 subprocess.CalledProcessError: Command '['where', 'cl']' returned non-zero exit status 1
 ```
-[查了一下](https://blog.csdn.net/iiiiiiimp/article/details/126941469)发现是一个玄学问题，电脑上不能安装VS2022，而要换成VS2019……这就是个大工程了，有点不敢轻举妄动。
+[查了一下](https://blog.csdn.net/iiiiiiimp/article/details/126941469)发现是一个玄学问题，电脑上不能安装VS2022，而要换成VS2019……这就是个大工程了，有点不敢轻举妄动。  
+[又查了一个](https://blog.csdn.net/Arsmart/article/details/122411994)，说的很详细，但题主最后也不知道自己是靠哪一步解决这个问题的。试了一下第一步，cl配置成果了，但项目代码依然运行失败，报同样的错，怀疑是不是要重启一下。总之*2022年11月18日20:04:18*今天就到这里了。
