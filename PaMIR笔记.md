@@ -30,4 +30,25 @@ conda install pytorch==1.7.0 torchvision==0.8.1 torchaudio==0.7.0 cudatoolkit=11
 ```
 pip install OpenEXR-1.3.8-cp38-cp38-win_amd64.whl
 ```  
-**完成上述操作以后再执行`pip install -r requirements.txt`就可以看到全能通过啦**
+**完成上述操作以后再执行`pip install -r requirements.txt`就可以看到全能通过啦**  
+## 运行Demo
+1. 下载预训练模型
+正常Windows人一般不使用它给的那一套命令，而是直接去[下载它的压缩包](https://github.com/ZhengZerong/PaMIR/releases/)(这里面有个Assets，下载里面的results.zip到项目的./network目录下)  
+然后解压它即可。  
+2. 运行预训练模型：  
+```
+cd ./networks
+python main_test.py
+cd ..
+```
+但会出现`ImportError: cannot import name '_nt_quote_args' from 'distutils.spawn'`  
+[查了一下](https://blog.csdn.net/qq_51123264/article/details/126021303)，需要
+```
+pip install setuptools==59.6.0
+```
+更新的版本反而不行。  
+3. 出现报错：
+```
+subprocess.CalledProcessError: Command '['where', 'cl']' returned non-zero exit status 1
+```
+[查了一下](https://blog.csdn.net/iiiiiiimp/article/details/126941469)发现是一个玄学问题，电脑上不能安装VS2022，而要换成VS2019……这就是个大工程了，有点不敢轻举妄动。
