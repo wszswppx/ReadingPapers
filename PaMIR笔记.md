@@ -52,4 +52,24 @@ pip install setuptools==59.6.0
 subprocess.CalledProcessError: Command '['where', 'cl']' returned non-zero exit status 1
 ```
 [查了一下](https://blog.csdn.net/iiiiiiimp/article/details/126941469)发现是一个玄学问题，电脑上不能安装VS2022，而要换成VS2019……这就是个大工程了，有点不敢轻举妄动。  
-[又查了一个](https://blog.csdn.net/Arsmart/article/details/122411994)，说的很详细，但题主最后也不知道自己是靠哪一步解决这个问题的。试了一下第一步，cl配置成果了，但项目代码依然运行失败，报同样的错，怀疑是不是要重启一下。总之*2022年11月18日20:04:18*今天就到这里了。
+[又查了一个](https://blog.csdn.net/Arsmart/article/details/122411994)，说的很详细，但题主最后也不知道自己是靠哪一步解决这个问题的。试了一下第一步，cl配置成果了，但项目代码依然运行失败，报同样的错，怀疑是不是要重启一下。总之*2022年11月18日20:04:18*今天就到这里了。  
+*2022年11月19日*昨晚走的时候重启了电脑，然后发现cl问题消失了。  
+4. 出现许多报错,大概为CUDA问题  
+挑了几行看起来比较关键的列出来：
+```
+FAILED: voxelize_cuda.cuda.o
+nvcc fatal : unsupported gpu architecture 'compute_86'
+subprocess.CalledProcessError: Command '['ninja', '-v']' returned non-zero exit status 1.
+RuntimeError: Error building extension 'voxelize_cuda'
+```
+此时使用`nvidia-smi`查看到`CUDA VERSION = 11.7`但这个好像不是指当前CUDA版本  
+利用`nvcc -V`命令查看当前使用的cuda版本，看到确实是11.0  
+附：[windows下切换不同的cuda版本](https://blog.csdn.net/sinat_38132146/article/details/106252877)  
+  a. FAILED: voxelize_cuda.cuda.o  
+  
+  b. nvcc fatal : unsupported gpu architecture 'compute_86':  
+  不支持86算力，[查了一下](https://blog.csdn.net/qq_31347869/article/details/123348901)发现是因为显卡的算力很高（RTX3090），但cuda11.0版本不支持这么高的算力，需要在代码里调整一下(？) 
+  
+  c. subprocess.CalledProcessError: Command '['ninja', '-v']' returned non-zero exit status 1.  
+  
+  d. RuntimeError: Error building extension 'voxelize_cuda'  
