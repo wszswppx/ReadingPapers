@@ -41,3 +41,11 @@ kill VS Code Server on Host...
 ```
 然后再重新连接，此时服务器端会重新下载一些依赖，等待后即可。  
 
+## 4. 使用Jupyter时反复出现kernel died  
+**可能原因**由于python和torch版本不对应导致的。  
+**解决方法①**更新torch版本使其对应，但搞不好要配半天；  
+**解决方法②**（来自[百度经验](https://jingyan.baidu.com/article/ca00d56c720efea89febcf46.html)）在代码开头加入：  
+```
+import os
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
+```
