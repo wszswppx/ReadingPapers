@@ -57,3 +57,21 @@ pip install nerfacc
 # 安装后
 Successfully installed commonmark-0.9.1 nerfacc-0.3.1 ninja-1.11.1 pybind11-2.10.1 rich-12.6.0
 ```
+
+## 5. 使用pip安装torch时提示：ReadTimeoutError: HTTPSConnectionPool(host='files.pythonhosted.org', port=443): Read timed out. 
+**原因**：文件较大，连接maybe不太稳定，需要设置较大的超时阈值（默认是15s）  
+**解决**：在pip时加入`--defalut-timeout=1688`即可，如：  
+```
+# 安装torch==1.11+cu113
+pip --default-timeout=1688 install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113
+```
+不得不提的一点：torch和CUDA版本一致的要求很强，且 torch==1.11.0 需要 python>=3.7  
+安装好torch以后第一件事：  
+```
+python
+>>>import torch
+>>>print(torch.__version__)
+>>>print(torch.cuda.is_available())
+```
+测试cuda的可用性，否则无法正常使用！  
+
