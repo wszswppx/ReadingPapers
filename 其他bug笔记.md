@@ -49,3 +49,11 @@ kill VS Code Server on Host...
 import os
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 ```
+## 4. 安装nerfacc  
+```
+# 执行 
+pip install nerfacc
+
+# 安装后
+Successfully installed commonmark-0.9.1 nerfacc-0.3.1 ninja-1.11.1 pybind11-2.10.1 rich-12.6.0
+```
